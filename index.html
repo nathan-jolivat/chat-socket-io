@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <title>Socket.IO chat</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+      body { font: 13px 'Poppins', sans-serif; margin-top: 20px; background-color: #36393E }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { height: 40px }
+      input::placeholder { color: white; }
+      form #m { border: 0; padding: 10px; width: 76%; margin-right: .5%; border-radius: 3px; background-color: #575757; color: #FFFFFF }
+      form button { width: 11%; color: white; background-color: #7289da; border: none; padding: 10px; border-radius: 3px }
+      .btn-secondary { color: #000 !important; background-color: #fff !important; border: none !important; padding: 10px !important; border-radius: 3px !important; }
+      button { color: white; background-color: #7289da; border: none; padding: 10px; border-radius: 3px; cursor: pointer; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; color: whitesmoke; width: 40%; }
+      #messages li:nth-child(odd) { background: #eee; color: #3d3d3d }
+      #messages { margin-bottom: 40px }
+      .modal { background-color: #36393E }
+      .modal h2 { color: white; margin-bottom: 30px ; font-size: 20px; }
+      .modal input { height: 52px; background-color: #5e6167; color: white; font-size: 14px ; padding: 10px; border: none; width: 100%; margin: 10px auto 30px auto; }
+      #messages .message { width: 100%; border-bottom: solid 1px #4d5259; position: relative;padding: 15px 0 15px; }
+      #messages .message .icon { float: left; height: 40px; width: 40px; margin-right: 20px; margin-left: 20px; }
+      #messages .message .icon img { border-radius: 50%; max-width: 100%; height: auto; }
+      #messages .message .body { margin-left: 60px }
+      #messages .message .body .username { color: white; font-weight: bold; }
+      #messages .message .body .content { color: rgba(255, 255, 255, 0.7); font-size: 14px; margin: 0; }
+      .disabled-button { cursor: not-allowed !important; }
+    </style>
+  </head>
+  <body>
+    <div id="messages"></div>
+
+
+    <div id="defineName" class="modal">
+      <h2>
+        Bon, <br>
+        comment on doit vous appeler m'sieur ?
+      </h2>
+      <input type="text" name="username" id="usernameInput" placeholder="Choisissez votre plus beau pseudo" required>
+      <a href="#" rel="modal:close"><button type="button" id="submitName">Définir pseudo</button></a>
+      <a href="#" rel="modal:close"><button class="btn-secondary" >Fermer</button></a>
+    </div>
+
+    <form action="">
+      <input id="m" autocomplete="off" autofocus placeholder="Saisir un message..." required />
+      <input id="u" type="hidden" />
+      <input id="pic" type="hidden" />
+      <button id="sendMessageButton">Envoyer</button>
+      <a href="#defineName" rel="modal:open"><button type="button">Choisir pseudo</button></a>
+    </form>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-1.11.1.js"></script> -->
+    <!-- Remember to include jQuery :) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
